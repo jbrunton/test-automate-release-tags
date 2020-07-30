@@ -12,3 +12,10 @@ jobs:
           EVENT_CONTEXT: ${{ toJson(github.event) }}
         run: echo $EVENT_CONTEXT
  
+      - env:
+          THIS_RELEASE: ${{ toJson(github.event.release.name) }}
+      - run: |
+          echo "this release: $THIS_RELEASE"
+          LATEST_RELEASE=$(hub release | grep -E '^[0-9]+.[0-9]+.[0-9]+$' | sort -r | head -n 1)
+          echo "latest release: $LATEST_RELEASE"
+  
