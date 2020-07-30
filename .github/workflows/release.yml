@@ -7,13 +7,21 @@ jobs:
   info:
   
     runs-on: ubuntu-latest
+    env:
+      THIS_RELEASE: ${{ github.event.release.name }}
     steps:
       - uses: actions/checkout@v2
-      - env:
+        
+      - name: get latest release
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          THIS_RELEASE: ${{ toJson(github.event.release.name) }}
         run: |
-          echo "this release: $THIS_RELEASE"
           LATEST_RELEASE=$(hub release | grep -E '^[0-9]+.[0-9]+.[0-9]+$' | sort -r | head -n 1)
           echo "latest release: $LATEST_RELEASE"
-  
+          echo ::set-env name=LATEST_RELEASE::$LATEST_RELEASE
+          
+      - env:
+          ENV_CONTEXT: ${{ toJson(env) }}
+        run: |
+          echo "ENV_CONTEXT: $ENV_CONTEXT"
+          
