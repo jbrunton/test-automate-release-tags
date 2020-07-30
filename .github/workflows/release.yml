@@ -8,11 +8,9 @@ jobs:
   
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - env:
-          EVENT_CONTEXT: ${{ toJson(github.event) }}
-        run: echo $EVENT_CONTEXT
- 
-      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           THIS_RELEASE: ${{ toJson(github.event.release.name) }}
         run: |
           echo "this release: $THIS_RELEASE"
