@@ -6,7 +6,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      THIS_RELEASE: ${{ github.event.release.name }}
+      THIS_RELEASE: 0.3.0
     steps:
       - uses: actions/checkout@v2
         
