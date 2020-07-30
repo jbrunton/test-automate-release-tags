@@ -1,0 +1,12 @@
+on: release
+
+jobs:
+
+  info:
+  
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          EVENT_CONTEXT: ${{ toJson(github.event) }}
+        run: echo $EVENT_CONTEXT
+ 
