@@ -7,5 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: hub version
-      - run: hub release
-        
+      - name: run hub commands
+        env:
+          GITHUB_USER: ${{ secrets.GITHUB_USER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+             hub release
