@@ -28,6 +28,8 @@ jobs:
           MAJOR_VERSION=$(echo $THIS_RELEASE | grep -Eo '^[0-9]+')
           MAJOR_TAG="v$MAJOR_VERSION"
           echo "this release is the latest, updating major tag $MAJOR_TAG"
+          git tag -fa $MAJOR_TAG -m "Update $MAJOR_TAG tag"
+          git push origin $MAJOR_TAG --force
       
       - if: env.THIS_RELEASE != env.LATEST_RELEASE
         run: echo "this release is not the latest (perhaps a patch?), not updating major tag"
