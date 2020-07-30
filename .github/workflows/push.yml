@@ -6,10 +6,6 @@ jobs:
   
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: hub version
-      - name: run hub commands
-        env:
-          GITHUB_USER: ${{ secrets.GITHUB_USER }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-             hub release
+      - run: hub release
