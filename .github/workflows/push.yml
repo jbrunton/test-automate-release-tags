@@ -19,9 +19,6 @@ jobs:
           echo ::set-env name=LATEST_RELEASE::$LATEST_RELEASE
           
       - env:
-          JOBS_ENV: ${{ toJson(jobs.info.env) }}
-          STEPS_ENV: ${{ toJson(jobs.info.steps.env) }}
+          ENV_CONTEXT: ${{ toJson(env) }}
         run: |
-          echo "JOBS_ENV: $JOBS_ENV"
-          echo "STEPS_ENV: $STEPS_ENV"
-          
+          echo "ENV_CONTEXT: $ENV_CONTEXT"
