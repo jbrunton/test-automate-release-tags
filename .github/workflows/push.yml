@@ -22,3 +22,13 @@ jobs:
           ENV_CONTEXT: ${{ toJson(env) }}
         run: |
           echo "ENV_CONTEXT: $ENV_CONTEXT"
+
+      - if: env.THIS_RELEASE == env.LATEST_RELEASE
+        run: |
+          MAJOR_VERSION=$(echo $THIS_RELEASE | grep -Eo '^[0-9]+')
+          MAJOR_TAG="v$MAJOR_VERSION"
+          echo "this release is the latest, updating major tag $MAJOR_TAG"
+      
+      - if: env.THIS_RELEASE != env.LATEST_RELEASE
+        run: echo "this release is not the latest (perhaps a patch?), not updating major tag
+        
